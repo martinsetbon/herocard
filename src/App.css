@@ -1,0 +1,55 @@
+.herocards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  margin: 0 auto;
+}
+
+.img-size {
+  width: 100%; /* Ensures the image takes full width of the card */
+  height: 200px; /* Set the fixed height */
+  object-fit: cover; /* Ensures the image fills the box without distortion */
+  object-position: top; /* Centers the image */
+  border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+
+@media (min-width: 100px) and (max-width: 575px) {
+  .herocards {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (min-width: 576px) {
+  .herocards {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .herocards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .herocards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .herocards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 1500px) {
+    .herocards {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+}
