@@ -5,30 +5,22 @@ import HeroCard from './components/HeroCard';
 import HeroForm from './components/HeroForm';
 
 function App() {
-  // State to store the list of hero cards
   const [heroes, setHeroes] = useState([]);
-
-  // State to control form visibility
   const [showForm, setShowForm] = useState(false);
 
-  // Generate random hero logic
   const generateHero = () => {
+    const randomGender = Math.random() < 0.5 ? "Male" : "Female";
     const randomName = ['Daddy Martin', 'Elie', 'Akim', 'Axeleration', 'Jason Parse', 'CSS (Chris Super Soldier)', 'Remyboy', 'Patrick', 'Emma', 'Ayaka', 'Shreken', 'Helena', 'Ayleen'][Math.floor(Math.random() * 13)];
     const randomRace = ['Human', 'Elf', 'Dwarf', 'Orc', 'Demon', 'Mermaid', 'Halfling'][Math.floor(Math.random() * 7)];
     const randomClass = ['Knight', 'Developer', 'Mage', 'Thief', 'Lancer', 'Pirate'][Math.floor(Math.random() * 6)];
 
     const getStatsThatSumInRange = () => {
-      let stats = [0, 0, 0, 0];
-      let total = 0;
-      let minTotal = 38;
-      let maxTotal = 45;
-
-      // Generate stats with a minimum of 6 per stat
-      while (total < minTotal || total > maxTotal) {
-        stats = stats.map(() => Math.floor(Math.random() * 14) + 6); // Random number between 6 and 19
+      let stats;
+      let total;
+      do {
+        stats = [0, 0, 0, 0].map(() => Math.floor(Math.random() * 14) + 6);
         total = stats.reduce((sum, stat) => sum + stat, 0);
-      }
-
+      } while (total < 38 || total > 45);
       return stats;
     };
 
@@ -36,6 +28,7 @@ function App() {
 
     const newHero = {
       name: randomName,
+      gender: randomGender,
       race: randomRace,
       class: randomClass,
       stats: {
@@ -49,23 +42,21 @@ function App() {
     setHeroes([...heroes, newHero]);
   };
 
-  // Function to delete a hero by index
   const deleteHero = (index) => {
-    const updatedHeroes = heroes.filter((hero, i) => i !== index);
-    setHeroes(updatedHeroes);
+    setHeroes(heroes.filter((_, i) => i !== index));
   };
 
-  // Function to create hero from form
-  const createHero = (e, heroName, heroClass, heroRace, stats) => {
-    e.preventDefault(); // Prevent form submission
+  const createHero = (e, heroName, heroGender, heroRace, heroClass, stats) => {
+    e.preventDefault();
 
-    if (!heroName || !heroClass || !heroRace) {
+    if (!heroName || !heroGender || !heroRace || !heroClass) {
       alert("Please fill in all fields");
       return;
     }
 
     const newHero = {
       name: heroName,
+      gender: heroGender,
       race: heroRace,
       class: heroClass,
       stats: {
@@ -77,22 +68,20 @@ function App() {
     };
 
     setHeroes([...heroes, newHero]);
-    setShowForm(false); // Hide the form after submission
+    setShowForm(false);
   };
 
   return (
     <div className="container text-center">
       <h1>My Hero Team</h1>
 
-      {/* Button to toggle the form visibility */}
       {!showForm ? (
         <button className="btn btn-primary" onClick={() => setShowForm(true)}>
           Create new hero
         </button>
       ) : null}
 
-      {/* Render HeroForm component when showForm is true */}
-      {showForm && <HeroForm createHero={createHero} rerollStats={() => {}} />}
+      {showForm && <HeroForm createHero={createHero} />}
 
       <button className="btn btn-primary ms-5" onClick={generateHero}>Generate new hero</button>
 
