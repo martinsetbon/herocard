@@ -11,7 +11,7 @@ function App() {
   const generateHero = () => {
     const randomGender = Math.random() < 0.5 ? "Male" : "Female";
     const randomName = ['Daddy Martin', 'Elie', 'Akim', 'Axeleration', 'Jason Parse', 'CSS (Chris Super Soldier)', 'Remyboy', 'Patrick', 'Emma', 'Ayaka', 'Shreken', 'Helena', 'Ayleen'][Math.floor(Math.random() * 13)];
-    const randomRace = ['Human', 'Elf', 'Dwarf', 'Orc', 'Demon', 'Mermaid', 'Halfling'][Math.floor(Math.random() * 7)];
+    const randomRace = ['Human', 'Elf', 'Dwarf', 'Orc', 'Demon'][Math.floor(Math.random() * 5)];
     const randomClass = ['Knight', 'Developer', 'Mage', 'Thief', 'Lancer', 'Pirate'][Math.floor(Math.random() * 6)];
 
     const getStatsThatSumInRange = () => {

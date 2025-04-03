@@ -8,7 +8,7 @@ function HeroForm({ createHero }) {
   const [stats, setStats] = useState([0, 0, 0, 0]);
 
   const classList = ['Knight', 'Developer', 'Mage', 'Thief', 'Lancer', 'Pirate'];
-  const raceList = ['Human', 'Elf', 'Dwarf', 'Orc', 'Demon', 'Mermaid', 'Halfling'];
+  const raceList = ['Human', 'Elf', 'Dwarf', 'Orc', 'Demon'];
   const genderList = ['Male', 'Female'];
 
   const rerollStats = () => {

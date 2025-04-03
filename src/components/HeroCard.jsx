@@ -6,11 +6,11 @@ function HeroCard({ hero, deleteHero }) {
   const heroClass = hero?.class?.toLowerCase() || "unknown"; // Renamed `class` to `heroClass`
 
   const imageName = `${gender}_${race}_${heroClass}.jpg`; // Using `heroClass` here
-  const imagePath = `/images/heroes/${imageName}`;
+  const imagePath = `${import.meta.env.BASE_URL}images/heroes/${imageName}`;
   const fallbackImage = "/images/chardefault.webp";
 
   return (
-    <div className="card" style={{ width: '18rem' }}>
+    <div className="card shadow-sm p-2" style={{ width: '18rem' }}>
       <img
         src={imagePath}
         // onError={(e) => (e.target.src = fallbackImage)}
@@ -20,11 +20,14 @@ function HeroCard({ hero, deleteHero }) {
       <div className="card-body">
         <h5 className="card-title">{hero.name}</h5>
         <p className="card-text">
-          {hero.gender} | Race: {hero.race} | Class: {hero.class}
+          {hero.gender} - {hero.race} - {hero.class}
         </p>
-        <p className="card-text">
-          Strength: {hero.stats.strength}, Intelligence: {hero.stats.intelligence}, Agility: {hero.stats.agility}, Charisma: {hero.stats.charisma}
-        </p>
+        <ul class="list-group list-group-flush">
+      <li class="list-group-item">Strength: {hero.stats.strength}</li>
+      <li class="list-group-item">Intelligence: {hero.stats.intelligence}</li>
+      <li class="list-group-item">Agility: {hero.stats.agility}</li>
+      <li class="list-group-item">Charisma: {hero.stats.charisma}</li>
+      </ul>
       </div>
       <button className="btn btn-danger" onClick={deleteHero}>Delete Hero</button>
     </div>
